@@ -25,12 +25,13 @@ int main(int argc, char *argv[]) {
 	}
 
 	//initialize processes in file
-	while (input.hasNext())
+	while (input.hasNext()){
 		//add to dispatcher input queue
 		dis.addToInitQueue(input.next());
 	}
 
 	dis.queueJobs();
+	
 	while(dis.hasJobs()){
 		dis.initializeProcesses();
 		dis.run();
