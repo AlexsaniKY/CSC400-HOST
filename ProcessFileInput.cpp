@@ -26,7 +26,7 @@ using namespace std;
 					&(process->req.printers), &(process->req.scanners),
 					&(process->req.modems), &(process->req.cds)) != 8) {
 				free(process);
-				throw ios_base::failure;
+				throw ios_base::failure("could not retrieve next process");
 			}
 		process->status = PCB_INITIALIZED;
 		return process;
