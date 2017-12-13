@@ -6,7 +6,7 @@ using namespace std;
 
 Dispatcher dis;
 
-int main() {
+int main(int argc, char *argv[]) {
 	char * inputfile;             // job dispatch file
 	FILE * inputliststream;
 
