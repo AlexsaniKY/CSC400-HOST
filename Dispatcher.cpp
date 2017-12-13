@@ -22,6 +22,6 @@ void Dispatcher::queueJobs(){
 
 void Dispatcher::initializeProcesses(){}
 
-bool Dispatcher::hasProcesses(){}
+bool Dispatcher::hasJobs(){return false;}
 
 void Dispatcher::run(){}
