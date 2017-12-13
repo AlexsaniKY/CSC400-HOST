@@ -24,4 +24,8 @@ void Dispatcher::initializeProcesses(){}
 
 bool Dispatcher::hasJobs(){return false;}
 
-void Dispatcher::run(){}
+void Dispatcher::run(){
+	PcbPtr p;
+	while(p = input_queue.next()) printPcb(p, stdout);
+
+}
