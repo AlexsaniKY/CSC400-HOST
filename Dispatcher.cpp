@@ -1,5 +1,5 @@
 #include "Dispatcher.h"
-#include <iostream>
+#include <cstdio>
 
 using namespace std;
 
@@ -13,6 +13,6 @@ Dispatcher::~Dispatcher()
 }
 
 void Dispatcher::addToInitQueue(PcbPtr process){
-	printPcb(process, cout);
+	printPcb(process, stdout);
 
 }
