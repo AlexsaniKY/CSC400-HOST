@@ -12,6 +12,6 @@ class ProcessFileInput{
 		ProcessFileInput();
 		~ProcessFileInput();
 		bool open(string filename);
-		bool hasNext();
+		bool eof();
 		PcbPtr next();
 };

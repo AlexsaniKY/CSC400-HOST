@@ -1,7 +1,6 @@
 #include "ProcessFileInput.h"
 
 #include <iostream>
-#include <exception>
 
 
 using namespace std;
@@ -17,8 +16,8 @@ using namespace std;
 			return true;
 		}
 
-		bool ProcessFileInput::hasNext(){
-			return !feof(inputliststream);
+		bool ProcessFileInput::eof(){
+			return feof(inputliststream);
 		}
 
 		PcbPtr ProcessFileInput::next(){
@@ -29,8 +28,8 @@ using namespace std;
 					&(process->req.printers), &(process->req.scanners),
 					&(process->req.modems), &(process->req.cds)) != 8) {
 				free(process);
-				throw ios_base::failure("could not retrieve next process");
+				return NULL;
 			}
-		process->status = PCB_INITIALIZED;
-		return process;
+			process->status = PCB_INITIALIZED;
+			return process;
 		}

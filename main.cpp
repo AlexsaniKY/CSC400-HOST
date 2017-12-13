@@ -15,19 +15,20 @@ int main(int argc, char *argv[]) {
 	//attempt to open input file
 	if (argc == 2) fname = argv[1];
 	else{
-		cout << "no file specified";
+		cout << "no file specified" << endl;
 		exit(2);
 	}
 	
 	if(!input.open(fname)) {
-		cout << "error opening file";
+		cout << "error opening file" << endl;
 		exit(2);
 	}
 
 	//initialize processes in file
-	while (input.hasNext()){
+	while (!input.eof()){
 		//add to dispatcher input queue
-		dis.addToInitQueue(input.next());
+		PcbPtr process = input.next();
+		if(process) dis.addToInitQueue(process);
 	}
 
 	dis.queueJobs();
