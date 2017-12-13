@@ -14,5 +14,6 @@ Dispatcher::~Dispatcher()
 
 void Dispatcher::addToInitQueue(PcbPtr process){
 	printPcb(process, stdout);
+	this.input_queue = enqPcb(input_queue, process);
 
 }
