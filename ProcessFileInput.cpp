@@ -1,5 +1,8 @@
 #include "ProcessFileInput.h"
 
+#include <iostream>
+#include <exception>
+
 
 using namespace std;
 
