@@ -10,15 +10,15 @@ int main(int argc, char *argv[]) {
 	char * inputfile;             // job dispatch file
 	FILE * inputliststream;
 
+	//attempt to open input file
 	if (argc == 2) inputfile = argv[1];
 	else cout << argv[0];
-
 	if (!(inputliststream = fopen(inputfile, "r"))) { // open it
-		cout << "could not open dispatch list file:" << inputfile;
+		cout << " could not open dispatch list file:" << inputfile;
 		exit(2);
 	}
-
-	while (!feof(inputliststream)) {  // put processes into input_queue
+	//initialize processes in file
+	while (!feof(inputliststream)) {
 		PcbPtr process = createnullPcb();
 		if (fscanf(inputliststream,"%d, %d, %d, %d, %d, %d, %d, %d",
 				&(process->arrivaltime), &(process->priority),
@@ -29,9 +29,14 @@ int main(int argc, char *argv[]) {
 		continue;
 		}
 		process->status = PCB_INITIALIZED;
-
+		//add to dispatcher input queue
 		dis.addToInitQueue(process);
 	}
 
+	dis.queueJobs();
+	while(dis.hasJobs()){
+		dis.initializeProcesses();
+		dis.run();
+	}
 
 }
