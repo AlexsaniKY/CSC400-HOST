@@ -26,6 +26,6 @@ bool Dispatcher::hasJobs(){return false;}
 
 void Dispatcher::run(){
 	PcbPtr p;
-	while(p = input_queue.next()) printPcb(p, stdout);
+	while(p = input_queue->next()) printPcb(p, stdout);
 
 }
