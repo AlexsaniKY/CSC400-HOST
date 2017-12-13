@@ -1,37 +1,33 @@
 #include "Dispatcher.h"
+#include "ProcessFileInput.h"
 #include "pcb.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 Dispatcher dis;
+ProcessFileInput input;
 
 int main(int argc, char *argv[]) {
-	char * inputfile;             // job dispatch file
-	FILE * inputliststream;
 
+	string fname;
 	//attempt to open input file
-	if (argc == 2) inputfile = argv[1];
-	else cout << argv[0];
-	if (!(inputliststream = fopen(inputfile, "r"))) { // open it
-		cout << " could not open dispatch list file:" << inputfile;
+	if (argc == 2) fname = argv[1];
+	else{
+		cout << "no file specified";
 		exit(2);
 	}
 	
+	if(!input.open(fname)) {
+		cout << "error opening file";
+		exit(2);
+	}
+
 	//initialize processes in file
-	while (!feof(inputliststream)) {
-		PcbPtr process = createnullPcb();
-		if (fscanf(inputliststream,"%d, %d, %d, %d, %d, %d, %d, %d",
-				&(process->arrivaltime), &(process->priority),
-				&(process->remainingcputime), &(process->mbytes),
-				&(process->req.printers), &(process->req.scanners),
-				&(process->req.modems), &(process->req.cds)) != 8) {
-			free(process);
-		continue;
-		}
-		process->status = PCB_INITIALIZED;
+	while (input.hasNext())
 		//add to dispatcher input queue
-		dis.addToInitQueue(process);
+		dis.addToInitQueue(input.next());
 	}
 
 	dis.queueJobs();

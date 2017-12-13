@@ -7,7 +7,6 @@ using namespace std;
 
 class ProcessFileInput{
 	private:
-		char * inputfile;
 		FILE * inputliststream;
 	public:
 		ProcessFileInput();
