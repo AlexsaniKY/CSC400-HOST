@@ -5,6 +5,6 @@ class Dispatcher
 public:
 	Dispatcher();
 	~Dispatcher();
-	void addToInitQueue(PcbPtr);
+	void addToInitQueue(PcbPtr process);
 };
 

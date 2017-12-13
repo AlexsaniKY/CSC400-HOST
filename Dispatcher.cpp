@@ -11,7 +11,7 @@ Dispatcher::~Dispatcher()
 {
 }
 
-void Dispatcher::addToInitQueue(PcbPtr){
+void Dispatcher::addToInitQueue(PcbPtr process){
 
 
 }
