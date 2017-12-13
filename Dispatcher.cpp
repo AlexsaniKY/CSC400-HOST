@@ -10,3 +10,8 @@ Dispatcher::Dispatcher()
 Dispatcher::~Dispatcher()
 {
 }
+
+void Dispatcher::addToInitQueue(PcbPtr){
+
+
+}
