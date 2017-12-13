@@ -6,6 +6,9 @@
 
 using namespace std;
 
+		ProcessFileInput::ProcessFileInput(){}
+		ProcessFileInput::~ProcessFileInput(){}
+
 		bool ProcessFileInput::open(string filename){
 			if (!(inputliststream = fopen(filename.c_str(), "r"))) { // open it
 				cout << " could not open dispatch list file:" << filename;
