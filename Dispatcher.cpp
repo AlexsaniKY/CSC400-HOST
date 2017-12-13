@@ -28,7 +28,7 @@ void Dispatcher::run(){
 	PcbPtr p = input_queue;
 	while(p) {
 		printPcb(p, stdout);
-		p = p->next();
+		p = p->next;
 		}
 
 }
