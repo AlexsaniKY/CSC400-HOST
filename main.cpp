@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
 		cout << " could not open dispatch list file:" << inputfile;
 		exit(2);
 	}
+	
 	//initialize processes in file
 	while (!feof(inputliststream)) {
 		PcbPtr process = createnullPcb();
