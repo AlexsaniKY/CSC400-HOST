@@ -14,6 +14,7 @@ public:
 	void addToInitQueue(PcbPtr process);
 	void queueJobs();
 	void initializeProcesses();
+	void printInitQueue();
 	bool hasJobs();
 	void run();
 };
