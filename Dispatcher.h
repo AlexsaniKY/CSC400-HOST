@@ -10,7 +10,7 @@ private:
 
 	PcbPtr input_queue = NULL;
 	PcbPtr new_queue = NULL;
-	PcbPtr[4] job_queues = {NULL, NULL, NULL, NULL};
+	PcbPtr job_queues[4] = {NULL, NULL, NULL, NULL};
 
 	Rsrc available_resources = {4,4,4,4};
 	unsigned long systime;
@@ -18,7 +18,7 @@ private:
 public:
 	Dispatcher();
 	~Dispatcher();
-	unsigned int getTime()
+	unsigned int getTime();
 	void addToInitQueue(PcbPtr process);
 	void queueJobs();
 	void initializeProcesses();

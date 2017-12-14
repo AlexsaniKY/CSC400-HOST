@@ -33,7 +33,7 @@ void Dispatcher::initializeProcesses(){
 	//while input queue not empty and process not scheduled for future
 	while(input_queue && input_queue->arrivaltime <= systime){
 		//remove from input queue
-		p = deqPcb(input_queue);
+		p = deqPcb(&input_queue);
 		//add to new process queue
 		new_queue = enqPcb(new_queue, p);
 	}
