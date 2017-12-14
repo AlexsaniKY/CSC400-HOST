@@ -38,7 +38,15 @@ void Dispatcher::initializeProcesses(){
 }
 
 //Whether the Dispatcher still has jobs, whether initialized or not
-bool Dispatcher::hasJobs(){return false;}
+bool Dispatcher::hasJobs(){
+	return (
+		input_queue
+		|| job_queues[RT]
+		|| job_queues[US1]
+		|| job_queues[US2]
+		|| job_queues[US3]
+	)
+}
 
 //test method to print the queue of processes not yet prepared into the ready state
 void Dispatcher::printQueue(PcbPtr Queue){
@@ -69,5 +77,6 @@ void Dispatcher::printAllQueues(){
 //Notable exceptions: Real Time Processes will run to completion.
 //User Processes will not preempt until other processes exist in the job queue.
 void Dispatcher::run(){
-	
+	sleep(1);
+	systime += 1;
 }
