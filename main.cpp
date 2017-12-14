@@ -30,10 +30,9 @@ int main(int argc, char *argv[]) {
 		PcbPtr process = input.next();
 		if(process) dis.addToInitQueue(process);
 	}
-
-	dis.queueJobs();
 	
 	while(dis.hasJobs()){
+		dis.queueJobs();
 		dis.initializeProcesses();
 		dis.run();
 	}
