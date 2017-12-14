@@ -13,6 +13,8 @@ Dispatcher::~Dispatcher()
 {
 }
 
+unsigned int Dispatcher::getTime(){return systime;}
+
 //add process to init queue.  Jobs that are queued but not arrived will be in this queue.
 //Jobs are required to arrive in arrival order to have defined behavior.
 void Dispatcher::addToInitQueue(PcbPtr process){

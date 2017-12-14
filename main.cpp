@@ -35,8 +35,9 @@ int main(int argc, char *argv[]) {
 		dis.initializeProcesses();
 		dis.queueJobs();
 		dis.run();
-		
+
 		dis.printAllQueues();
+		if (Dispatcher.getTime() > 8) quit(0);
 	}
 
 }

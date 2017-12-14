@@ -7,7 +7,7 @@ class Dispatcher
 {
 private:
 	enum queue{RT, US1, US2, US3};
-	
+
 	PcbPtr input_queue = NULL;
 	PcbPtr new_queue = NULL;
 	PcbPtr[4] job_queues = {NULL, NULL, NULL, NULL};
@@ -18,6 +18,7 @@ private:
 public:
 	Dispatcher();
 	~Dispatcher();
+	unsigned int getTime()
 	void addToInitQueue(PcbPtr process);
 	void queueJobs();
 	void initializeProcesses();
