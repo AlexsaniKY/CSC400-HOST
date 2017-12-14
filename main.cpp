@@ -32,8 +32,8 @@ int main(int argc, char *argv[]) {
 	}
 	
 	while(dis.hasJobs()){
-		dis.queueJobs();
 		dis.initializeProcesses();
+		dis.queueJobs();
 		dis.run();
 	}
 
