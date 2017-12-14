@@ -33,7 +33,7 @@ void Dispatcher::initializeProcesses(){
 		//remove from input queue
 		p = deqPcb(input_queue);
 		//add to new process queue
-		new_queue = enqPcb(new_queue, p)
+		new_queue = enqPcb(new_queue, p);
 	}
 }
 
@@ -41,11 +41,12 @@ void Dispatcher::initializeProcesses(){
 bool Dispatcher::hasJobs(){
 	return (
 		input_queue
+		|| new_queue
 		|| job_queues[RT]
 		|| job_queues[US1]
 		|| job_queues[US2]
 		|| job_queues[US3]
-	)
+	);
 }
 
 //test method to print the queue of processes not yet prepared into the ready state
