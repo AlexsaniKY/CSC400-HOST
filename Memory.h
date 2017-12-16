@@ -4,7 +4,7 @@ class MemoryBlock{
 	public:
 		int position;
 		int length;
-}
+};
 
 class Memory{
 	private:
