@@ -13,5 +13,5 @@ MemoryBlock* Memory::get_block(int length){
 		MemoryBlock* m = new MemoryBlock(0, length);
 		return m;
 	}
-	else return NULL;
+	else return (MemoryBlock*)NULL;
 }
