@@ -2,6 +2,7 @@
 
 class MemoryBlock{
 	public:
+		MemoryBlock(int position, int length);
 		int position;
 		int length;
 };
