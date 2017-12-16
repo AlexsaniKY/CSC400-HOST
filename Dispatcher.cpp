@@ -64,6 +64,8 @@ void Dispatcher::printQueue(PcbPtr Queue){
 void Dispatcher::printAllQueues(){
 	cout << "Process not initialized:" << endl;
 	printQueue(input_queue);
+	cout << "New Processes not Ready:" << endl;
+	printQueue(new_queue);
 	cout << "Real Time Processes:" << endl;
 	printQueue(job_queues[RT]);
 	cout << "User Processes Priority 1:" << endl;
