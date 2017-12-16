@@ -34,6 +34,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <unistd.h> 
+#include "Memory.h"
 
 #ifndef FALSE
 #define FALSE 0
@@ -78,6 +79,7 @@ struct pcb {
     int priority;
     int remainingcputime;
     int mbytes;
+    MemoryBlock* mblock;
 //    MabPtr memoryblock;
     Rsrc req;
     int status;
