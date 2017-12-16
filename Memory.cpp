@@ -2,8 +2,9 @@
 
 using namespace std;
 
-MemoryBlock::MemoryBlock(int position, int length){
-
+MemoryBlock::MemoryBlock(int pos, int len){
+	position = pos;
+	length = len;
 
 }
 
@@ -12,5 +13,5 @@ MemoryBlock* Memory::get_block(int length){
 		MemoryBlock* m = new MemoryBlock(0, length);
 		return m;
 	}
-
+	else return NULL;
 }
