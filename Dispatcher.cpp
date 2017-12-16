@@ -47,7 +47,6 @@ void Dispatcher::addToInitQueue(PcbPtr process){
 void Dispatcher::queueJobs(){
 	PcbPtr p = new_queue;
 	PcbPtr previous = NULL;
-	PcbPtr next = NULL;
 	MemoryBlock* m;
 
 	//for each process in new_queue
@@ -58,14 +57,20 @@ void Dispatcher::queueJobs(){
 				m = memory.get_block(p->mbytes);
 				//if a block was available
 				if(m){
+					//give it to p
 					p->mblock = m;
-					next = p->next;
-					if(previous) previous->next = next;
-					p->next = NULL;
-					p = next;
+					//remove p from the list
+					if(previous) pop_next(previous);
+					//add it to the RT ready queue
+					job_queues[RT] = enqPcb(job_queues[RT], p);
+					//set up the next link
+					p = previous->next;
+					//clean up
+					m = NULL;
 					continue;
 				}
 				break;
+			
 		}
 
 		previous = p;
