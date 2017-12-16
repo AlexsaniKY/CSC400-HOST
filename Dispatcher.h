@@ -12,6 +12,7 @@ private:
 	PcbPtr new_queue = NULL;
 	PcbPtr job_queues[4] = {NULL, NULL, NULL, NULL};
 
+	Memory memory;
 	Rsrc available_resources = {4,4,4,4};
 	unsigned long systime;
 	void printQueue(PcbPtr Queue);

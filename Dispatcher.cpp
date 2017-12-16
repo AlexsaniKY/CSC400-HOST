@@ -26,6 +26,32 @@ void Dispatcher::addToInitQueue(PcbPtr process){
 //Queues up all jobs from the New Process Queue into the appropriate RT/User feedback Queues
 //provided the resources required by the process is available.
 void Dispatcher::queueJobs(){
+	PcbPtr p = new_queue;
+	PcbPtr previous = NULL;
+	PcbPtr next = NULL;
+	MemoryBlock* m;
+
+	//for each process in new_queue
+	while(p){
+		switch(p->priority){
+			//if real-time
+			case RT_PRIORITY:
+				m = memory.get_block(p->mbytes);
+				//if a block was available
+				if(m){
+					p->mblock = m;
+					next = p->next;
+					if(previous) previous->next = next;
+					p->next = NULL;
+					p = next;
+					continue;
+				}
+				break;
+		}
+
+		previous = p;
+		p = p->next;
+	}
 }
 
 //Initializes Processes into the New Process Queue if they have "arrived"

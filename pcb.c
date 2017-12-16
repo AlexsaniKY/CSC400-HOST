@@ -195,6 +195,7 @@ PcbPtr createnullPcb()
         newprocessPtr->priority = HIGH_PRIORITY;
         newprocessPtr->remainingcputime = 0;
         newprocessPtr->mbytes = 0;
+        newprocessPtr->mblock = NULL;
 //        newprocessPtr->memoryblock = NULL;
         newprocessPtr->req.printers = 0;
         newprocessPtr->req.scanners = 0;
