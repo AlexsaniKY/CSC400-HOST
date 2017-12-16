@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdlib>
+
 class MemoryBlock{
 	public:
 		MemoryBlock(int position, int length);
