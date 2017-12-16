@@ -16,6 +16,7 @@ private:
 	Rsrc available_resources = {4,4,4,4};
 	unsigned long systime;
 	void printQueue(PcbPtr Queue);
+	PcbPtr pop_next(PcbPtr pcb);
 public:
 	Dispatcher();
 	~Dispatcher();

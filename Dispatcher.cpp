@@ -16,6 +16,25 @@ Dispatcher::~Dispatcher()
 
 unsigned int Dispatcher::getTime(){return systime;}
 
+PcbPtr Dispatcher::pop_next(PcbPtr pcb){
+	PcbPtr next = pcb->next;
+	//if this was the last item in the list, return null
+	if(!next) return NULL;
+	//next exists, check for the one afterwards
+	PcbPtr next_next = next->next;
+	//if the next pointer is the last in the list, popping is trivial
+	if(!next_next){
+		pcb->next = NULL;
+		return next;
+	}
+	//we have all three list items, reroute the first to the third
+	pcb->next = next_next;
+	//unlink the middle pcb
+	next->next = NULL;
+	//and return it
+	return next;
+}
+
 //add process to init queue.  Jobs that are queued but not arrived will be in this queue.
 //Jobs are required to arrive in arrival order to have defined behavior.
 void Dispatcher::addToInitQueue(PcbPtr process){
