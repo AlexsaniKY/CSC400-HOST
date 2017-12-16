@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stdlib>
+#include <cstdlib>
 
 class MemoryBlock{
 	public:
