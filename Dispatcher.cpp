@@ -14,7 +14,7 @@ Dispatcher::~Dispatcher()
 {
 }
 
-unsigned int Dispatcher::getTime(){return systime;}
+int Dispatcher::getTime(){return systime;}
 
 PcbPtr Dispatcher::pop_next(PcbPtr pcb){
 	PcbPtr next = pcb->next;
@@ -225,7 +225,7 @@ void Dispatcher::run(){
 		|| (hasInputQueue() 
 			&& input_queue->priority <= running_process->priority
 			&& input_queue->arrivaltime <= systime ) 
-		))
+		));
 	suspendPcb(running_process);
 	running_process->priority += 
 		running_process->priority + 1 < 4 
