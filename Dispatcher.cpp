@@ -16,6 +16,7 @@ Dispatcher::~Dispatcher()
 
 int Dispatcher::getTime(){return systime;}
 
+//pop the next item out of a pcb linked list
 PcbPtr Dispatcher::pop_next(PcbPtr pcb){
 	PcbPtr next = pcb->next;
 	//if this was the last item in the list, return null
@@ -149,7 +150,7 @@ bool Dispatcher::hasInputQueue(){
 	return input_queue;
 }
 
-//Whether the Dispatcher still has jobs, whether initialized or not
+//Whether the Dispatcher still has jobs, whether ready or not
 bool Dispatcher::hasJobs(){
 	return (
 		new_queue
@@ -205,6 +206,7 @@ void Dispatcher::run(){
 		return;
 	}
 
+	//if real-time, run to completion and terminate
 	if(running_process->priority == RT){
 		while(running_process->remainingcputime != 0){
 			sleep(1);
@@ -216,10 +218,12 @@ void Dispatcher::run(){
 		return;
 	}
 
+	//run for one tick of idle or user process run time
 	do{
 		sleep(1);
 		systime+=1;
 	}
+	//continue while no other jobs or anything in input queue with less priority and not arrived
 	while(!(
 		hasJobs() 
 		|| (hasInputQueue() 

@@ -35,11 +35,11 @@ int main(int argc, char *argv[]) {
 		dis.initializeProcesses();
 		dis.queueJobs();
 
-		dis.printAllQueues();
+		//dis.printAllQueues();
 
 		dis.run();
 		
-		if (dis.getTime() > 100) exit(0);
+		//if (dis.getTime() > 100) exit(0);
 	}
 
 }
