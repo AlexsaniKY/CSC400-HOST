@@ -77,6 +77,7 @@ void Dispatcher::queueJobs(){
 					p = next;
 					//clean up
 					m = NULL;
+					sleep(.1);
 					continue;
 				}
 				break;
