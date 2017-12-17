@@ -218,17 +218,20 @@ void Dispatcher::run(){
 		return;
 	}
 
-	//run for one tick of idle or user process run time
+	//run for one tick  user process run time
 	do{
 		sleep(1);
 		systime+=1;
+		running_process->remainingcputime -= 1;
 	}
 	//continue while no other jobs or anything in input queue with less priority and not arrived
-	while(!(
-		hasJobs() 
-		|| (hasInputQueue() 
-			&& input_queue->priority <= running_process->priority
-			&& input_queue->arrivaltime <= systime ) 
+	while(running_process->remainingcputime>0
+		&& !(
+			hasJobs() 
+			|| (hasInputQueue() 
+				&& input_queue->priority <= running_process->priority
+				&& input_queue->arrivaltime <= systime ) 
+			
 		));
 	suspendPcb(running_process);
 	running_process->priority += 
