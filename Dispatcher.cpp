@@ -84,8 +84,8 @@ void Dispatcher::queueJobs(){
 			
 		}
 
-		previous = p;
-		p = p->next;
+		//previous = p;
+		//p = p->next;
 	}
 }
 
