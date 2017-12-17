@@ -95,13 +95,15 @@ void Dispatcher::queueJobs(){
 					if(!job_queues[RT]) job_queues[RT] = p;
 					else job_queues[RT] = enqPcb(job_queues[RT], p);
 					//set up the next link
-					previous = p;
 					p = next;
 					//clean up
 					m = NULL;
 					continue;
 				}
-				else p = p->next;
+				else {
+					previous = p;
+					p = p->next;
+				}
 				break;
 			//if user process
 			default:
@@ -118,11 +120,13 @@ void Dispatcher::queueJobs(){
 					}
 					if(!job_queues[p->priority]) job_queues[p->priority] = p;
 					else job_queues[p->priority] = enqPcb(job_queues[p->priority], p);
-					previous = p;
 					p = next;
 					continue;
 				}
-				else p = p->next;
+				else {
+					previous = p;
+					p = p->next;
+				}
 				break;
 			
 		}
