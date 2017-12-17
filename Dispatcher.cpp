@@ -80,6 +80,7 @@ void Dispatcher::queueJobs(){
 					m = NULL;
 					continue;
 				}
+				else p = p->next;
 				break;
 			
 		}
