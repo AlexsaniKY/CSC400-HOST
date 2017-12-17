@@ -80,7 +80,6 @@ void Dispatcher::queueJobs(){
 			//if real-time
 			case RT_PRIORITY:
 				m = memory.get_block(p->mbytes);
-				cout << m << endl;
 				//if a block was available
 				if(m){
 					//give it to p
@@ -103,8 +102,23 @@ void Dispatcher::queueJobs(){
 				}
 				else p = p->next;
 				break;
+			//if user process
 			default:
-				//if User Process
+				//if resources can be allocated
+				if(isRsrcAvailable(p->req)){
+					allocateRsrc(p->req);
+					next = p->next;
+					if(previous) pop_next(previous);
+					else {
+						new_queue = next;
+						p->next = NULL;
+					}
+					if(!job_queues[p->priority]) job_queues[p->priority] = p;
+					else job_queues[p->priority] = enqPcb(job_queues[p->priority], p);
+					p = next;
+					continue;
+				}
+				else p = p->next;
 				break;
 			
 		}
