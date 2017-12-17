@@ -58,7 +58,7 @@ void Dispatcher::queueJobs(){
 				m = memory.get_block(p->mbytes);
 				//if a block was available
 				if(m){
-					cout << "memory selected" << endl
+					cout << "memory selected" << endl;
 					//give it to p
 					p->mblock = m;
 					//remove p from the list
