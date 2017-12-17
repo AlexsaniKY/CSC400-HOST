@@ -56,6 +56,7 @@ void Dispatcher::queueJobs(){
 			case RT_PRIORITY:
 				cout << "retrieving memory" << endl;
 				m = memory.get_block(p->mbytes);
+				cout << m << endl;
 				//if a block was available
 				if(m){
 					cout << "memory selected" << endl;
