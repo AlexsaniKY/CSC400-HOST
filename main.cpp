@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 		dis.run();
 
 		dis.printAllQueues();
-		if (dis.getTime() > 8) exit(0);
+		if (dis.getTime() > 100) exit(0);
 	}
 
 }
