@@ -234,6 +234,11 @@ void Dispatcher::run(){
 	running_process->priority += 
 		running_process->priority + 1 < 4 
 		? 1 : 0;
-	job_queues[running_process->priority] = enqPcb(job_queues[running_process->priority], running_process);
+	//if process complete, terminate and free resources
+	if(running_process->remainingcputime<1) {
+		terminatePcb(running_process);
+		deallocateRsrc(running_process->req);
+		}
+	else job_queues[running_process->priority] = enqPcb(job_queues[running_process->priority], running_process);
 	running_process = NULL;
 }
