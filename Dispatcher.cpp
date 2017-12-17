@@ -54,9 +54,11 @@ void Dispatcher::queueJobs(){
 		switch(p->priority){
 			//if real-time
 			case RT_PRIORITY:
+				cout << "retrieving memory" << endl;
 				m = memory.get_block(p->mbytes);
 				//if a block was available
 				if(m){
+					cout << "memory selected" << endl
 					//give it to p
 					p->mblock = m;
 					//remove p from the list
