@@ -52,6 +52,7 @@ void Dispatcher::queueJobs(){
 
 	//for each process in new_queue
 	while(p){
+		sleep(1);
 		switch(p->priority){
 			//if real-time
 			case RT_PRIORITY:
@@ -77,7 +78,6 @@ void Dispatcher::queueJobs(){
 					p = next;
 					//clean up
 					m = NULL;
-					sleep(1);
 					continue;
 				}
 				break;
