@@ -216,7 +216,7 @@ void Dispatcher::run(){
 		return;
 	}
 
-	do(){
+	do{
 		sleep(1);
 		systime+=1;
 	}
@@ -228,7 +228,7 @@ void Dispatcher::run(){
 		))
 	suspendPcb(running_process);
 	running_process->priority += 
-		running_process + 1 < 4 
+		running_process->priority + 1 < 4 
 		? 1 : 0;
 	job_queues[running_process->priority] = enqPcb(job_queues[running_process->priority], running_process);
 }

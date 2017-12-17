@@ -16,7 +16,7 @@ private:
 
 	Memory memory = Memory(2048);
 	Rsrc available_resources = {4,4,4,4};
-	unsigned long systime;
+	int systime;
 	void printQueue(PcbPtr Queue);
 	PcbPtr pop_next(PcbPtr pcb);
 	bool isRsrcAvailable(Rsrc reqRes);
@@ -25,7 +25,7 @@ private:
 public:
 	Dispatcher();
 	~Dispatcher();
-	unsigned int getTime();
+	int getTime();
 	void addToInitQueue(PcbPtr process);
 	void queueJobs();
 	void initializeProcesses();
