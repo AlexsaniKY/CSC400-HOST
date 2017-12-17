@@ -145,11 +145,14 @@ void Dispatcher::initializeProcesses(){
 	}
 }
 
+bool Dispatcher::hasInputQueue(){
+	return input_queue;
+}
+
 //Whether the Dispatcher still has jobs, whether initialized or not
 bool Dispatcher::hasJobs(){
 	return (
-		input_queue
-		|| new_queue
+		new_queue
 		|| job_queues[RT]
 		|| job_queues[US1]
 		|| job_queues[US2]
@@ -194,8 +197,15 @@ void Dispatcher::run(){
 	else if(job_queues[US2]) running_process = deqPcb(&job_queues[US2]);
 	else if(job_queues[US3]) running_process = deqPcb(&job_queues[US3]);
 
+	//if there is a running process
+	if(running_process) startPcb(running_process);
+	else{
+		sleep(1);
+		systime += 1;
+		return;
+	}
+
 	if(running_process->priority == RT){
-		startPcb(running_process);
 		while(running_process->remainingcputime != 0){
 			sleep(1);
 			systime += 1;
@@ -203,10 +213,22 @@ void Dispatcher::run(){
 		}
 		terminatePcb(running_process);
 		running_process = NULL;
-
 		return;
 	}
 
-	sleep(1);
-	systime += 1;
+	do(){
+		sleep(1);
+		systime+=1;
+	}
+	while(!(
+		hasJobs() 
+		|| (hasInputQueue() 
+			&& input_queue->priority <= running_process->priority
+			&& input_queue->arrivaltime <= systime ) 
+		))
+	suspendPcb(running_process);
+	running_process->priority += 
+		running_process + 1 < 4 
+		? 1 : 0;
+	job_queues[running_process->priority] = enqPcb(job_queues[running_process->priority], running_process);
 }

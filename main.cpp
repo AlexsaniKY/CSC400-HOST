@@ -31,12 +31,14 @@ int main(int argc, char *argv[]) {
 		if(process) dis.addToInitQueue(process);
 	}
 	
-	while(dis.hasJobs()){
+	while(dis.hasInputQueue() || dis.hasJobs()){
 		dis.initializeProcesses();
 		dis.queueJobs();
-		dis.run();
 
 		dis.printAllQueues();
+
+		dis.run();
+		
 		if (dis.getTime() > 100) exit(0);
 	}
 

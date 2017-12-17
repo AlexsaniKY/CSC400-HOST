@@ -30,6 +30,7 @@ public:
 	void queueJobs();
 	void initializeProcesses();
 	void printAllQueues();
+	bool hasInputQueue();
 	bool hasJobs();
 	void run();
 };
