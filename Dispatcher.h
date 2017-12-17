@@ -17,6 +17,9 @@ private:
 	unsigned long systime;
 	void printQueue(PcbPtr Queue);
 	PcbPtr pop_next(PcbPtr pcb);
+	bool isRsrcAvailable(Rsrc reqRes);
+	void allocateRsrc(Rsrc res);
+	void deallocateRsrc(Rsrc res);
 public:
 	Dispatcher();
 	~Dispatcher();

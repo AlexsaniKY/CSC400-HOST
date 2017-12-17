@@ -35,6 +35,23 @@ PcbPtr Dispatcher::pop_next(PcbPtr pcb){
 	return next;
 }
 
+bool Dispatcher::isRsrcAvailable(Rsrc reqRes){
+	return (
+		(reqRes.printers <= available_resources.printers) 
+		&& (reqRes.scanners <= available_resources.scanners) 
+		&& (reqRes.modems <= available_resources.modems) 
+		&& (reqRes.cds <= available_resources.cds)
+		);
+}
+
+void Dispatcher::allocateRsrc(Rsrc res){
+
+}
+
+void Dispatcher::deallocateRsrc(Rsrc res){
+
+}
+
 //add process to init queue.  Jobs that are queued but not arrived will be in this queue.
 //Jobs are required to arrive in arrival order to have defined behavior.
 void Dispatcher::addToInitQueue(PcbPtr process){
@@ -56,7 +73,6 @@ void Dispatcher::queueJobs(){
 		switch(p->priority){
 			//if real-time
 			case RT_PRIORITY:
-				cout << "retrieving memory" << endl;
 				m = memory.get_block(p->mbytes);
 				cout << m << endl;
 				//if a block was available
@@ -81,6 +97,9 @@ void Dispatcher::queueJobs(){
 				}
 				else p = p->next;
 				break;
+			default:
+				//if User Process
+				
 			
 		}
 
