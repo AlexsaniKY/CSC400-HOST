@@ -65,7 +65,8 @@ void Dispatcher::queueJobs(){
 					//remove p from the list
 					if(previous) pop_next(previous);
 					//add it to the RT ready queue
-					job_queues[RT] = enqPcb(job_queues[RT], p);
+					if(!job_queues[RT]) job_queues[RT] = p
+					else job_queues[RT] = enqPcb(job_queues[RT], p);
 					//set up the next link
 					p = previous->next;
 					//clean up
