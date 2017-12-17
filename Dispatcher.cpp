@@ -128,9 +128,7 @@ void Dispatcher::queueJobs(){
 					p = p->next;
 				}
 				break;
-			
 		}
-
 		//previous = p;
 		//p = p->next;
 	}
@@ -191,6 +189,25 @@ void Dispatcher::printAllQueues(){
 //Notable exceptions: Real Time Processes will run to completion.
 //User Processes will not preempt until other processes exist in the job queue.
 void Dispatcher::run(){
+	//remove a process from the "ready" job queues
+	if(job_queues[RT]) running_process = deqPcb(&job_queues[RT]);
+	else if(job_queues[US1]) running_process = deqPcb(&job_queues[US1]);
+	else if(job_queues[US2]) running_process = deqPcb(&job_queues[US2]);
+	else if(job_queues[US3]) running_process = deqPcb(&job_queues[US3]);
+
+	if(running_process->priority == RT){
+		startPcb(running_process);
+		while(running_process->remainingcputime != 0){
+			sleep(1);
+			systime += 1;
+			running_process->remainingcputime -= 1;
+		}
+		terminatePcb(running_process);
+		running_process = NULL;
+
+		return;
+	}
+
 	sleep(1);
 	systime += 1;
 }

@@ -12,6 +12,8 @@ private:
 	PcbPtr new_queue = NULL;
 	PcbPtr job_queues[4] = {NULL, NULL, NULL, NULL};
 
+	PcbPtr running_process = NULL;
+
 	Memory memory = Memory(2048);
 	Rsrc available_resources = {4,4,4,4};
 	unsigned long systime;
