@@ -68,6 +68,10 @@ void Dispatcher::queueJobs(){
 					//remove p from the list
 					next = p->next;
 					if(previous) pop_next(previous);
+					else {
+						new_queue = next;
+						p->next = NULL;
+					}
 					cout << "p removed from new_queue" << endl;
 					//add it to the RT ready queue
 					if(!job_queues[RT]) job_queues[RT] = p;
