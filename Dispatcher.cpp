@@ -61,10 +61,8 @@ void Dispatcher::queueJobs(){
 				cout << m << endl;
 				//if a block was available
 				if(m){
-					cout << "memory selected" << endl;
 					//give it to p
 					p->mblock = m;
-					cout << "m assigned to p" << endl;
 					//remove p from the list
 					next = p->next;
 					if(previous) pop_next(previous);
@@ -72,13 +70,10 @@ void Dispatcher::queueJobs(){
 						new_queue = next;
 						p->next = NULL;
 					}
-					cout << "p removed from new_queue" << endl;
 					//add it to the RT ready queue
 					if(!job_queues[RT]) job_queues[RT] = p;
 					else job_queues[RT] = enqPcb(job_queues[RT], p);
-					cout << "p moved to job queue" << endl;
 					//set up the next link
-					//if(previous) p = previous->next;
 					p = next;
 					//clean up
 					m = NULL;
