@@ -45,11 +45,17 @@ bool Dispatcher::isRsrcAvailable(Rsrc reqRes){
 }
 
 void Dispatcher::allocateRsrc(Rsrc res){
-
+	available_resources.printers -= res.printers;
+	available_resources.scanners -= res.scanners;
+	available_resources.modems -= res.modems;
+	available_resources.cds -= res.cds;
 }
 
 void Dispatcher::deallocateRsrc(Rsrc res){
-
+	available_resources.printers += res.printers;
+	available_resources.scanners += res.scanners;
+	available_resources.modems += res.modems;
+	available_resources.cds += res.cds;
 }
 
 //add process to init queue.  Jobs that are queued but not arrived will be in this queue.
@@ -99,7 +105,7 @@ void Dispatcher::queueJobs(){
 				break;
 			default:
 				//if User Process
-				
+				break;
 			
 		}
 
